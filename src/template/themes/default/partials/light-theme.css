@@ -800,6 +800,10 @@ footer > p:last-child {
 
 @media (max-width: 768px) {
   /* Header Mobile */
+  .header-container {
+    gap: 1rem;
+  }
+
   nav {
     display: none;
     position: fixed;
@@ -828,14 +832,12 @@ footer > p:last-child {
 
   .menu-toggle {
     display: block;
+    margin-left: auto;
   }
 
   .theme-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 999;
-    box-shadow: var(--shadow-lg);
+    display: flex;
+    margin-right: 0.5rem;
   }
 
   /* Hero Mobile */
