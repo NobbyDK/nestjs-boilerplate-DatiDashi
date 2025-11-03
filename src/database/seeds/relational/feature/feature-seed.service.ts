@@ -17,11 +17,13 @@ export class FeatureSeedService {
       await this.repository.save([
         this.repository.create({
           title: 'Integrasi Cepat',
-          description: 'Mudah diintegrasikan dengan sistem Anda tanpa hambatan.',
+          description:
+            'Mudah diintegrasikan dengan sistem Anda tanpa hambatan.',
         }),
         this.repository.create({
           title: 'Keamanan Tinggi',
-          description: 'Data Anda terlindungi dengan enkripsi dan autentikasi modern.',
+          description:
+            'Data Anda terlindungi dengan enkripsi dan autentikasi modern.',
         }),
         this.repository.create({
           title: 'Dukungan 24/7',
