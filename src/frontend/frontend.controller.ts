@@ -21,4 +21,13 @@ export class FrontendController {
       pricingList: companyData.pricingList,
     };
   }
+
+  @Get('/login')
+  @Render('layouts/pages/login')
+  getLogin() {
+    return {
+      title: 'Login',
+      name: 'datidashi company',
+    };
+  }
 }
