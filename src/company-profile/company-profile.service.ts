@@ -16,14 +16,19 @@ export class CompanyProfileService {
   ) {}
 
   async getCompanyProfileData() {
-    const [produkList, strukturOrganisasi, fiturList, pricingList, aboutSections] =
-      await Promise.all([
-        this.productsService.findAll(),
-        this.organizationMembersService.findAll(),
-        this.featuresService.findAll(),
-        this.pricingsService.findAll(),
-        this.aboutService.findAll(),
-      ]);
+    const [
+      produkList,
+      strukturOrganisasi,
+      fiturList,
+      pricingList,
+      aboutSections,
+    ] = await Promise.all([
+      this.productsService.findAll(),
+      this.organizationMembersService.findAll(),
+      this.featuresService.findAll(),
+      this.pricingsService.findAll(),
+      this.aboutService.findAll(),
+    ]);
 
     return {
       produkList,

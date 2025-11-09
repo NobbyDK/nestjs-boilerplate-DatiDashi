@@ -13,12 +13,12 @@ export class AboutSeedService {
   async run() {
     // Check if we already have the 5 default sections
     const existingCount = await this.repository.count();
-    
+
     // If we have less than 5, delete all and re-seed
     if (existingCount < 5 && existingCount > 0) {
       await this.repository.clear();
     }
-    
+
     // Only skip if we already have 5 or more sections
     if (existingCount >= 5) {
       return;
