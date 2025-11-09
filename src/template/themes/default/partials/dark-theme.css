@@ -290,13 +290,17 @@ nav a:hover::after {
 
 .btn.primary {
   background: var(--gradient-primary);
-  color: white;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+  border: 2px solid #3b82f6;
 }
 
 .btn.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  background: #27272a;
+  border-color: #60a5fa;
 }
 
 .btn.primary::before {
@@ -780,6 +784,35 @@ footer {
 .newsletter-form input[type="submit"]:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Newsletter form messages */
+.php-email-form .loading,
+.php-email-form .error-message,
+.php-email-form .sent-message {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.php-email-form .loading {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.php-email-form .error-message {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.php-email-form .sent-message {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 footer > p:last-child {
@@ -1394,11 +1427,12 @@ footer > p:last-child {
 
 /* === LOGIN PAGE === */
 .login-page {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px); /* Dikurangi tinggi header */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem 2rem; /* Padding yang nyaman */
+  margin-top: 70px; /* Space untuk fixed header */
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
 }
 
@@ -1533,6 +1567,11 @@ footer > p:last-child {
 }
 
 @media (max-width: 480px) {
+  .login-page {
+    padding: 2rem 1rem; /* Kurangi padding di mobile */
+    margin-top: 60px; /* Header lebih kecil di mobile */
+  }
+
   .login-card {
     padding: 2rem 1.5rem;
   }

@@ -1391,11 +1391,12 @@ footer > p:last-child {
 
 /* === LOGIN PAGE === */
 .login-page {
-  min-height: 100vh;
+  min-height: calc(100vh - 70px); /* Dikurangi tinggi header */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem 2rem; /* Padding yang nyaman */
+  margin-top: 70px; /* Space untuk fixed header */
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
 }
 
@@ -1530,6 +1531,11 @@ footer > p:last-child {
 }
 
 @media (max-width: 480px) {
+  .login-page {
+    padding: 2rem 1rem; /* Kurangi padding di mobile */
+    margin-top: 60px; /* Header lebih kecil di mobile */
+  }
+
   .login-card {
     padding: 2rem 1.5rem;
   }
