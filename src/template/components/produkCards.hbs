@@ -1,9 +1,11 @@
 <div class="card-container">
   {{#each this}}
     <div class="card">
-      <h3>{{jumlah}}+</h3>
-      <h4>{{judul}}</h4>
-      <p>{{deskripsi}}</p>
+      {{#if jumlah}}
+        <h3 class="card-number">{{jumlah}}+</h3>
+      {{/if}}
+      <h4 class="card-title">{{judul}}</h4>
+      <p class="card-description">{{deskripsi}}</p>
     </div>
   {{/each}}
 </div>
