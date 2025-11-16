@@ -6,21 +6,21 @@ WORKDIR /usr/src/app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies (skip husky prepare script)
-RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+# Install ALL dependencies first (including dev for build)
+RUN npm ci --ignore-scripts && npm cache clean --force
 
 # Copy application source
 COPY . .
 
-# Build application
+# Build application (needs @nestjs/cli from devDependencies)
 RUN npm run build
 
-# Remove dev dependencies and source files
-RUN rm -rf src test node_modules
-RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+# Remove dev dependencies and source files to reduce image size
+RUN rm -rf src test
+RUN npm prune --omit=dev
 
 # Expose port
 EXPOSE 3000
 
-# Start application directly (no wait-for-it needed - Railway uses external DB)
+# Start application
 CMD ["node", "dist/main.js"]
