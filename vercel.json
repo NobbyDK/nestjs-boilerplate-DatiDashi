@@ -1,59 +1,17 @@
 {
-  "version": 2,
-  "name": "datidashi-frontend",
-  "builds": [],
-  "routes": [
-    {
-      "src": "/config.js",
-      "dest": "/config.js"
-    },
-    {
-      "src": "/js/(.*)",
-      "dest": "/js/$1"
-    },
-    {
-      "src": "/html/(.*)",
-      "dest": "/html/$1"
-    },
-    {
-      "src": "/themes/(.*)",
-      "dest": "/themes/$1"
-    },
-    {
-      "src": "/",
-      "dest": "/html/index.html"
-    },
-    {
-      "src": "/login",
-      "dest": "/html/login.html"
-    },
-    {
-      "src": "/admin",
-      "dest": "/html/admin.html"
-    },
-    {
-      "src": "/admin/products",
-      "dest": "/html/admin-products.html"
-    },
-    {
-      "src": "/admin/pricings",
-      "dest": "/html/admin-pricings.html"
-    },
-    {
-      "src": "/admin/features",
-      "dest": "/html/admin-features.html"
-    },
-    {
-      "src": "/admin/about",
-      "dest": "/html/admin-about.html"
-    },
-    {
-      "src": "/admin/members",
-      "dest": "/html/admin-members.html"
-    }
-  ],
-  "public": true,
-  "github": {
-    "silent": true
-  }
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/html/index.html" },
+    { "source": "/login", "destination": "/html/login.html" },
+    { "source": "/admin", "destination": "/html/admin.html" },
+    { "source": "/admin/products", "destination": "/html/admin-products.html" },
+    { "source": "/admin/pricings", "destination": "/html/admin-pricings.html" },
+    { "source": "/admin/features", "destination": "/html/admin-features.html" },
+    { "source": "/admin/about", "destination": "/html/admin-about.html" },
+    { "source": "/admin/members", "destination": "/html/admin-members.html" }
+  ]
 }
