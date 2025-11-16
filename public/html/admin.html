@@ -147,10 +147,10 @@
         
         <div class="border-t border-gray-700 my-4"></div>
         
-        <a href="/html/index.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
-          <i class="fas fa-home w-5 mr-3"></i>
-          <span>Back to Website</span>
-        </a>
+        <button onclick="logout()" class="w-full flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-red-600 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-sign-out-alt w-5 mr-3"></i>
+          <span>Logout</span>
+        </button>
       </nav>
     </aside>
     
@@ -378,5 +378,8 @@
       loadStats();
     });
   </script>
+  
+  <!-- Include admin auth utilities -->
+  <script src="/js/admin-auth.js"></script>
 </body>
 </html>

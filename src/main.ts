@@ -21,10 +21,10 @@ async function bootstrap() {
       origin: [
         'http://localhost:4000', 
         'http://localhost:3000',
-        /\.vercel\.app$/, // Allow all Vercel preview and production deployments
-        /\.onrender\.com$/, // Allow Render deployments
-        process.env.FRONTEND_DOMAIN, // From .env
-      ].filter(Boolean), // Remove undefined values
+        /\.vercel\.app$/,
+        /\.onrender\.com$/,
+        ...(process.env.FRONTEND_DOMAIN ? [process.env.FRONTEND_DOMAIN] : [])
+      ],
       credentials: true,
     }
   });
@@ -44,11 +44,11 @@ async function bootstrap() {
     },
   );
   
-  // Serve static files - COMMENTED FOR SEPARATED ARCHITECTURE
-  // Uncomment if you want fullstack mode (backend serves frontend)
+  // Serve static files - COMMENTED FOR SEPARATED ARCHITECTURE (Vercel + Render)
+  // Uncomment these lines for local testing only
   // expressApp.use(
   //   '/themes',
-  //   express.static(join(__dirname, '..', 'src', 'template', 'themes')),
+  //   express.static(join(__dirname, '..', 'public', 'themes')),
   // );
   // expressApp.use('/js', express.static(join(__dirname, '..', 'public', 'js')));
   // expressApp.use('/html', express.static(join(__dirname, '..', 'public', 'html')));
