@@ -1,84 +1,44 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AdminService } from './admin.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Admin')
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  @Get()
-  @Render('layouts/pages/admin')
-  async getDashboard() {
-    const stats = await this.adminService.getDashboardStats();
-    return {
-      title: 'Admin Dashboard',
-      name: 'DatiDashi Company',
-      ...stats,
-    };
+  @Get('stats')
+  async getDashboardStats() {
+    return await this.adminService.getDashboardStats();
   }
 
   @Get('users')
-  @Render('layouts/pages/admin-users')
   async getUsers() {
-    const users = await this.adminService.getAllUsers();
-    return {
-      title: 'User Management',
-      name: 'DatiDashi Company',
-      users,
-    };
+    return await this.adminService.getAllUsers();
   }
 
   @Get('products')
-  @Render('layouts/pages/admin-products')
   async getProducts() {
-    const products = await this.adminService.getAllProducts();
-    return {
-      title: 'Product Management',
-      name: 'DatiDashi Company',
-      products,
-    };
+    return await this.adminService.getAllProducts();
   }
 
   @Get('pricings')
-  @Render('layouts/pages/admin-pricings')
   async getPricings() {
-    const pricings = await this.adminService.getAllPricings();
-    return {
-      title: 'Pricing Management',
-      name: 'DatiDashi Company',
-      pricings,
-    };
+    return await this.adminService.getAllPricings();
   }
 
   @Get('features')
-  @Render('layouts/pages/admin-features')
   async getFeatures() {
-    const features = await this.adminService.getAllFeatures();
-    return {
-      title: 'Feature Management',
-      name: 'DatiDashi Company',
-      features,
-    };
+    return await this.adminService.getAllFeatures();
   }
 
   @Get('about')
-  @Render('layouts/pages/admin-about')
   async getAbout() {
-    const about = await this.adminService.getAllAbout();
-    return {
-      title: 'About Management',
-      name: 'DatiDashi Company',
-      about,
-    };
+    return await this.adminService.getAllAbout();
   }
 
   @Get('members')
-  @Render('layouts/pages/admin-members')
   async getMembers() {
-    const members = await this.adminService.getAllMembers();
-    return {
-      title: 'Team Members Management',
-      name: 'DatiDashi Company',
-      members,
-    };
+    return await this.adminService.getAllMembers();
   }
 }

@@ -1,5 +1,7 @@
 // Admin Products CRUD with JWT Token
-const API_BASE_URL = '/api/products';
+// Backend API URL (separated architecture)
+const BACKEND_URL = window.ENV?.BACKEND_URL || 'http://localhost:3000';
+const API_BASE_URL = `${BACKEND_URL}/api/products`;
 let authToken = localStorage.getItem('authToken') || '';
 
 // Check if user is authenticated

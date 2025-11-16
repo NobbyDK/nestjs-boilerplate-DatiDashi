@@ -1,5 +1,7 @@
 // Admin Pricings CRUD
-const API_BASE_URL = '/api/pricings';
+// Backend API URL (separated architecture)
+const BACKEND_URL = window.ENV?.BACKEND_URL || 'http://localhost:3000';
+const API_BASE_URL = `${BACKEND_URL}/api/pricings`;
 let authToken = localStorage.getItem('authToken') || '';
 
 function getHeaders() {

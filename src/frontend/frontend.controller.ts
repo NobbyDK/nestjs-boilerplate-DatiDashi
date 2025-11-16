@@ -1,34 +1,14 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { CompanyProfileService } from '../company-profile/company-profile.service';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller()
+@ApiTags('Frontend')
+@Controller('frontend')
 export class FrontendController {
   constructor(private readonly companyProfileService: CompanyProfileService) {}
 
-  @Get('/')
-  @Render('layouts/pages/home')
-  async getHome() {
-    const companyData =
-      await this.companyProfileService.getCompanyProfileData();
-
-    return {
-      title: 'Selamat datang!',
-      theme: 'dark-theme.css',
-      name: 'datidashi company',
-      produkList: companyData.produkList,
-      strukturOrganisasi: companyData.strukturOrganisasi,
-      fiturList: companyData.fiturList,
-      pricingList: companyData.pricingList,
-      aboutSections: companyData.aboutSections,
-    };
-  }
-
-  @Get('/login')
-  @Render('layouts/pages/login')
-  getLogin() {
-    return {
-      title: 'Login',
-      name: 'datidashi company',
-    };
+  @Get('company-profile')
+  async getCompanyProfile() {
+    return await this.companyProfileService.getCompanyProfileData();
   }
 }

@@ -11,8 +11,11 @@ export class OrganizationMember {
   @Column({ type: 'varchar', length: 255 })
   position: string;
 
-  @Column({ type: 'varchar', length: 500, nullable: true })
+  @Column({ type: 'text', nullable: true })
   photoUrl: string;
+
+  @Column({ type: 'int', default: 0 })
+  order: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

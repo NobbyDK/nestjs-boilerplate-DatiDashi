@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Selamat datang! - Company Profile Presentation">
+  <title>Selamat datang! - DatiDashi Company</title>
+  
+  <!-- Stylesheets -->
+  <link id="theme-style" rel="stylesheet" href="/themes/default/partials/dark-theme.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Environment Configuration -->
+  <script src="/config.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo">
+        <img id="logo-img" src="/themes/default/img/gelap.png" alt="Logo svt">
+        <h1>datidashi company</h1>
+      </a>
+
+      <nav class="nav-grid" id="nav-menu">
+        <a href="#hero" class="nav-item">Home</a>
+        <a href="#about-section" class="nav-item">About</a>
+        <a href="#struktur-section" class="nav-item">Team</a>
+        <a href="#produk-section" class="nav-item">Products</a>
+        <a href="#feature-section" class="nav-item">Features</a>
+        <a href="#pricing-section" class="nav-item">Pricing</a>
+        
+        <!-- Mobile Only: Login & Theme Toggle -->
+        <div class="mobile-only-menu">
+          <a href="/html/login.html" class="nav-item login-mobile">🔐 Login</a>
+          <div class="theme-toggle-mobile">
+            <button onclick="setTheme('light')" class="theme-btn-mobile">☀️ Light</button>
+            <button onclick="setTheme('dark')" class="theme-btn-mobile">🌙 Dark</button>
+          </div>
+        </div>
+      </nav>
+
+      <div class="theme-toggle">
+        <button onclick="setTheme('light')">Light</button>
+        <button onclick="setTheme('dark')">Dark</button>
+      </div>
+
+      <a href="/html/login.html" class="login-btn">Login</a>
+
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="hero hero-company" id="hero">
+    <div class="hero-content">
+      <img src="/themes/default/img/gelap.png" alt="ChoreCorp Logo" class="hero-logo" />
+      <h1><span class="white">Dati</span><span class="yellow">Dashi.</span></h1>
+      <p class="tagline">COMPANY PROFILE PRESENTATION</p>
+      <a href="#about-section" class="btn primary">Pelajari Lebih Lanjut</a>
+    </div>
+  </section>
+
+  <section class="about-section" id="about-section">
+    <div id="about-content">
+      <!-- Default content while loading -->
+      <div class="about-card">
+        <div class="about-text">
+          <h2>Tentang Kami</h2>
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="struktur-section" id="struktur-section">
+    <h2>Struktur Organisasi</h2>
+    <div class="card-container" id="members-container">
+      <!-- Will be populated by JavaScript -->
+    </div>
+  </section>
+
+  <section class="produk-section" id="produk-section">
+    <h2>Produk dan Layanan</h2>
+    <div class="card-container" id="products-container">
+      <!-- Will be populated by JavaScript -->
+    </div>
+  </section>
+
+  <section class="feature-section" id="feature-section">
+    <h2>Fitur Unggulan</h2>
+    <div class="feature-grid" id="features-container">
+      <!-- Will be populated by JavaScript -->
+    </div>
+  </section>
+
+  <section class="pricing-section" id="pricing-section">
+    <h2>Paket Harga</h2>
+    <div class="pricing-grid" id="pricing-container">
+      <!-- Will be populated by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/" class="logo d-flex align-items-center">
+            <span class="sitename">datidashi company</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>CIWARUGA HILIR</p>
+            <p>Kabupaten Bandung, 40559</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62 8888 488 55</span></p>
+            <p><strong>Email:</strong> <span>DàtíDàshī@example.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="fab fa-x"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+          <form class="php-email-form" onsubmit="event.preventDefault();">
+            <div class="newsletter-form">
+              <input type="email" name="email" placeholder="Your Email" disabled>
+              <input type="submit" value="Coming Soon" disabled style="cursor: not-allowed; opacity: 0.6;">
+            </div>
+            <p class="text-muted mt-2" style="font-size: 0.85rem; color: var(--text-secondary);">
+              <i class="fas fa-info-circle"></i> Newsletter feature will be available soon
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <p>&copy; 2025 datidashi company</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('show');
+    }
+
+    function setTheme(mode) {
+      const themeLink = document.getElementById('theme-style');
+      const logoImg = document.getElementById('logo-img');
+
+      themeLink.href = `/themes/default/partials/${mode}-theme.css`;
+
+      if (mode === 'dark') {
+        logoImg.src = '/themes/default/img/gelap.png';
+      } else {
+        logoImg.src = '/themes/default/img/terang.png';
+      }
+    }
+
+    // Load data from API
+    async function loadCompanyData() {
+      try {
+        const BACKEND_URL = window.ENV?.BACKEND_URL || 'http://localhost:3000';
+        console.log('🔵 Fetching from:', `${BACKEND_URL}/api/frontend/company-profile`);
+        const response = await fetch(`${BACKEND_URL}/api/frontend/company-profile`);
+        const data = await response.json();
+        console.log('✅ Data received from Backend:', data);
+
+        // Populate About Section
+        const aboutContent = document.getElementById('about-content');
+        if (data.aboutSections && data.aboutSections.length > 0) {
+          aboutContent.innerHTML = data.aboutSections
+            .filter(section => section.isActive)
+            .map(section => `
+              <div class="about-card">
+                <div class="about-text">
+                  <h2>${section.title}</h2>
+                  <p>${section.description}</p>
+                </div>
+                ${section.imageUrl ? `
+                  <div class="about-image">
+                    <img src="${section.imageUrl}" alt="${section.title}">
+                  </div>
+                ` : ''}
+              </div>
+            `).join('');
+        } else {
+          aboutContent.innerHTML = `
+            <div class="about-card">
+              <div class="about-text">
+                <h2>Tentang Kami</h2>
+                <p>Datidashi Company adalah tim kreatif yang fokus pada solusi digital, pengembangan teknologi, dan strategi bisnis. Kami percaya bahwa inovasi dimulai dari kolaborasi yang kuat dan visi yang jelas. Dengan pengalaman bertahun-tahun di industri teknologi, kami berkomitmen untuk memberikan solusi terbaik bagi klien kami.</p>
+              </div>
+              <div class="about-image">
+                <img src="/themes/default/img/opening-real.jpeg" alt="Foto Perusahaan">
+              </div>
+            </div>
+          `;
+        }
+
+        // Populate Members
+        const membersContainer = document.getElementById('members-container');
+        if (data.strukturOrganisasi && data.strukturOrganisasi.length > 0) {
+          membersContainer.innerHTML = data.strukturOrganisasi.map(member => `
+            <div class="card">
+              ${member.photoUrl ? `<img src="${member.photoUrl}" alt="${member.name}" class="card-img">` : ''}
+              <div class="card-body">
+                <h3>${member.name}</h3>
+                <p>${member.position}</p>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Populate Products
+        const productsContainer = document.getElementById('products-container');
+        if (data.produkList && data.produkList.length > 0) {
+          productsContainer.innerHTML = data.produkList.map(product => `
+            <div class="card">
+              ${product.jumlah ? `<h3 class="card-number">${product.jumlah}+</h3>` : ''}
+              <h4 class="card-title">${product.judul}</h4>
+              <p class="card-description">${product.deskripsi}</p>
+            </div>
+          `).join('');
+        }
+
+        // Populate Features
+        const featuresContainer = document.getElementById('features-container');
+        if (data.fiturList && data.fiturList.length > 0) {
+          featuresContainer.innerHTML = data.fiturList.map(feature => `
+            <div class="card">
+              <div class="card-body">
+                ${feature.icon ? `<i class="fas ${feature.icon} feature-icon"></i>` : ''}
+                <h3>${feature.name}</h3>
+                <p>${feature.description}</p>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Populate Pricing
+        const pricingContainer = document.getElementById('pricing-container');
+        if (data.pricingList && data.pricingList.length > 0) {
+          pricingContainer.innerHTML = data.pricingList.map(pricing => `
+            <div class="card">
+              <div class="card-body">
+                <h3>${pricing.name}</h3>
+                ${pricing.description ? `<p class="pricing-description">${pricing.description}</p>` : ''}
+                <p class="price">Rp ${pricing.price}</p>
+                <p class="period">per ${pricing.period}</p>
+                ${pricing.features ? `
+                  <ul>
+                    ${pricing.features.map(f => `<li>${f}</li>`).join('')}
+                  </ul>
+                ` : ''}
+                <button class="btn primary">Beli Sekarang</button>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (error) {
+        console.error('Error loading company data:', error);
+      }
+    }
+
+    // Load data when page loads
+    document.addEventListener('DOMContentLoaded', loadCompanyData);
+  </script>
+</body>
+</html>

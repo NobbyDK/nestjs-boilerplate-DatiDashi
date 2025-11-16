@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management - DatiDashi Company</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Environment Configuration -->
+  <script src="/config.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .admin-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+    
+    .sidebar-scroll {
+      width: 256px;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex-shrink: 0;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background: #4b5563;
+      border-radius: 3px;
+    }
+    
+    .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+      background: #6b7280;
+    }
+    
+    .main-content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+    
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .main-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .main-content::-webkit-scrollbar-track {
+      background: #f3f4f6;
+    }
+    
+    .main-content::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 4px;
+    }
+    
+    .main-content::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
+    }
+    
+    .table-row-hover:hover {
+      background-color: #f9fafb;
+    }
+    
+    .modal-backdrop {
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 antialiased">
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="sidebar-scroll bg-gray-900 text-white shadow-xl">
+      <div class="p-6 border-b border-gray-700">
+        <h1 class="text-xl font-bold text-white">DatiDashi Company</h1>
+        <p class="text-gray-400 text-xs mt-1">Admin Panel</p>
+      </div>
+      
+      <nav class="p-3 flex flex-col">
+        <a href="/html/admin.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-chart-line w-5 mr-3"></i>
+          <span>Dashboard</span>
+        </a>
+        
+        <a href="/html/admin-products.html" class="flex items-center px-4 py-3 mb-2 bg-blue-600 text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-box w-5 mr-3"></i>
+          <span>Products</span>
+        </a>
+        
+        <a href="/html/admin-pricings.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-dollar-sign w-5 mr-3"></i>
+          <span>Pricing</span>
+        </a>
+        
+        <a href="/html/admin-features.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-star w-5 mr-3"></i>
+          <span>Features</span>
+        </a>
+        
+        <a href="/html/admin-about.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-info-circle w-5 mr-3"></i>
+          <span>About</span>
+        </a>
+        
+        <a href="/html/admin-members.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-users w-5 mr-3"></i>
+          <span>Team Members</span>
+        </a>
+        
+        <div class="border-t border-gray-700 my-4"></div>
+        
+        <a href="/html/index.html" class="flex items-center px-4 py-3 mb-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-200 font-medium">
+          <i class="fas fa-home w-5 mr-3"></i>
+          <span>Back to Website</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main-content-wrapper bg-gray-50">
+      <header class="bg-white shadow-sm border-b border-gray-200 flex-shrink-0">
+        <div class="px-8 py-4 flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">Product Management</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage your product catalog</p>
+          </div>
+          <button onclick="openCreateModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center shadow-md transition">
+            <i class="fas fa-plus mr-2"></i>
+            Add Product
+          </button>
+        </div>
+      </header>
+
+      <main class="main-content p-8 pb-16">
+        <!-- Stats Summary -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="bg-white rounded-lg shadow-md p-5 border-l-4 border-blue-500">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-500 text-xs font-semibold uppercase mb-1">Total Products</p>
+                <h3 class="text-2xl font-bold text-gray-900" id="total-products">0</h3>
+              </div>
+              <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                <i class="fas fa-box text-blue-600 text-xl"></i>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-5 border-l-4 border-green-500">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-500 text-xs font-semibold uppercase mb-1">Active Products</p>
+                <h3 class="text-2xl font-bold text-gray-900" id="active-products">0</h3>
+              </div>
+              <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                <i class="fas fa-check-circle text-green-600 text-xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+            <h3 class="text-lg font-bold text-gray-900 flex items-center">
+              <i class="fas fa-list mr-2 text-blue-600"></i>
+              Product List
+            </h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Judul</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Deskripsi</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Jumlah</th>
+                  <th class="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200" id="productsTable">
+                <!-- Will be populated by JavaScript -->
+                <tr>
+                  <td colspan="4" class="px-6 py-12 text-center">
+                    <div class="flex flex-col items-center">
+                      <i class="fas fa-spinner fa-spin text-gray-400 text-4xl mb-3"></i>
+                      <p class="text-gray-500">Loading products...</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create/Edit Modal -->
+  <div id="productModal" class="hidden fixed inset-0 bg-black bg-opacity-50 modal-backdrop overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-6 border-0 w-11/12 md:w-2/3 lg:w-1/2 shadow-2xl rounded-xl bg-white">
+      <div class="flex justify-between items-center mb-5">
+        <h3 class="text-xl font-bold text-gray-900" id="modalTitle">
+          <i class="fas fa-box text-blue-600 mr-2"></i>
+          Add Product
+        </h3>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full p-2 transition">
+          <i class="fas fa-times text-lg"></i>
+        </button>
+      </div>
+      
+      <form id="productForm" onsubmit="saveProduct(event)" class="space-y-4">
+        <input type="hidden" id="productId">
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-semibold mb-2">
+            <i class="fas fa-heading text-blue-600 mr-1"></i>
+            Judul <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="productJudul" required 
+            class="border border-gray-300 rounded-lg w-full py-2.5 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-semibold mb-2">
+            <i class="fas fa-align-left text-blue-600 mr-1"></i>
+            Deskripsi <span class="text-red-500">*</span>
+          </label>
+          <textarea id="productDeskripsi" required rows="3" 
+            class="border border-gray-300 rounded-lg w-full py-2.5 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 text-sm font-semibold mb-2">
+            <i class="fas fa-sort-numeric-up text-blue-600 mr-1"></i>
+            Jumlah <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="productJumlah" required min="0"
+            class="border border-gray-300 rounded-lg w-full py-2.5 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <p class="text-xs text-gray-500 mt-1">Quantity/Amount</p>
+        </div>
+        
+        <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
+          <button type="button" onclick="closeModal()" 
+            class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2.5 px-5 rounded-lg transition">
+            <i class="fas fa-times mr-1"></i>
+            Cancel
+          </button>
+          <button type="submit" 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg shadow-md transition">
+            <i class="fas fa-save mr-1"></i>
+            Save Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/admin-products.js"></script>
+  <script>
+    // Load products on page load
+    async function loadProducts() {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        window.location.href = '/html/login.html';
+        return;
+      }
+
+      try {
+        console.log('🔵 Fetching products from: http://localhost:3000/api/admin/products');
+        const response = await fetch('http://localhost:3000/api/admin/products', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const products = await response.json();
+          const tbody = document.getElementById('productsTable');
+          
+          // Update stats
+          document.getElementById('total-products').textContent = products.length;
+          document.getElementById('active-products').textContent = products.length;
+
+          if (products.length === 0) {
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="4" class="px-6 py-12 text-center">
+                  <div class="flex flex-col items-center">
+                    <i class="fas fa-box-open text-gray-300 text-5xl mb-3"></i>
+                    <p class="text-gray-500 font-semibold">No products found</p>
+                    <p class="text-gray-400 text-sm mt-1">Click "Add Product" to create your first product</p>
+                  </div>
+                </td>
+              </tr>
+            `;
+          } else {
+            tbody.innerHTML = products.map(product => `
+              <tr class="table-row-hover">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm font-semibold text-gray-900">${product.judul}</div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="text-sm text-gray-700 max-w-xs truncate">${product.deskripsi}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm font-semibold text-gray-900">${product.jumlah}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                  <button onclick="editProduct('${product.id}')" class="text-blue-600 hover:text-blue-900 mr-3 font-medium">
+                    <i class="fas fa-edit"></i> Edit
+                  </button>
+                  <button onclick="deleteProduct('${product.id}', '${product.judul}')" class="text-red-600 hover:text-red-900 font-medium">
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            `).join('');
+          }
+        } else if (response.status === 401) {
+          localStorage.removeItem('authToken');
+          window.location.href = '/html/login.html';
+        }
+      } catch (error) {
+        console.error('Error loading products:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProducts);
+  </script>
+</body>
+</html>
