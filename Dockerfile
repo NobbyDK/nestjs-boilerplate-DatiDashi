@@ -1,22 +1,26 @@
+# Production Dockerfile for Railway
 FROM node:22.19.0-alpine
 
-RUN apk add --no-cache bash
-RUN npm i -g @nestjs/cli typescript ts-node
-
-COPY package*.json /tmp/app/
-RUN cd /tmp/app && npm install
-
-COPY . /usr/src/app
-RUN cp -a /tmp/app/node_modules /usr/src/app
-COPY ./wait-for-it.sh /opt/wait-for-it.sh
-RUN chmod +x /opt/wait-for-it.sh
-COPY ./startup.relational.dev.sh /opt/startup.relational.dev.sh
-RUN chmod +x /opt/startup.relational.dev.sh
-RUN sed -i 's/\r//g' /opt/wait-for-it.sh
-RUN sed -i 's/\r//g' /opt/startup.relational.dev.sh
-
 WORKDIR /usr/src/app
-RUN if [ ! -f .env ]; then cp env-example-relational .env; fi
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies (skip husky prepare script)
+RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+
+# Copy application source
+COPY . .
+
+# Build application
 RUN npm run build
 
-CMD ["/opt/startup.relational.dev.sh"]
+# Remove dev dependencies and source files
+RUN rm -rf src test node_modules
+RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+
+# Expose port
+EXPOSE 3000
+
+# Start application directly (no wait-for-it needed - Railway uses external DB)
+CMD ["node", "dist/main.js"]
